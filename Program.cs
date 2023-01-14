@@ -1,4 +1,8 @@
 using ASP_Project.Data;
+using ASP_Project.Models;
+using ASP_Project.Repositories;
+using ASP_Project.Repositories.Locations;
+using ASP_Project.Services.LocationServices;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +15,11 @@ builder.Services.AddDbContext<DataBaseContext>(options => options.UseSqlServer(b
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//Repositories
+builder.Services.AddTransient<ILocations, Locations>();
+
+//Services
+builder.Services.AddTransient<ILocationService, LocationService>();
 
 var app = builder.Build();
 

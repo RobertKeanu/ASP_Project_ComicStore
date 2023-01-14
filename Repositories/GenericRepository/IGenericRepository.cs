@@ -9,7 +9,6 @@ namespace ASP_Project.Repositories.GenericRepository
         IQueryable<TEntity> GetAllAsQueryable();
 
         // create
-        void Create(TEntity entity);
         Task CreateAsync(TEntity entity);
         void CreateRange(IEnumerable<TEntity> entities);
         Task CreateRangeAsync(IEnumerable<TEntity> entities);
@@ -23,8 +22,8 @@ namespace ASP_Project.Repositories.GenericRepository
         void DeleteRange(IEnumerable<TEntity> entities);
 
         // find 
-        TEntity FindById(Guid id);
-        Task<TEntity> FindByIdAsync(Guid id);
+        //TEntity FindById(Guid id);
+        Task<TEntity?> FindByIdAsync(Guid id);
 
         IAsyncEnumerable<TEntity> GetAsync();
 

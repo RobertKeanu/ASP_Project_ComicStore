@@ -6,6 +6,6 @@
 
         DateTime DateCreated { get; set; }
 
-        DateTime? DateModified { get; set; }
+        DateTime DateModified { get; set; } //maybe nullable?
     }
 }

@@ -31,14 +31,19 @@ namespace ASP_Project.Repositories.GenericRepository
             await _table.AddAsync(entity);
         }
 
-        public void Create(TEntity entity)
+/*        public void Create(TEntity entity)
         {
             _table.Add(entity);
         }
-
+*/
         public void CreateRange(IEnumerable<TEntity> entities)
         {
             _table.AddRange(entities);
+        }
+
+        public async Task<TEntity?> FindByIdAsync(Guid id)
+        {
+            return await _table.FindAsync(id);
         }
 
         public async Task CreateRangeAsync(IEnumerable<TEntity> entities)
@@ -61,15 +66,11 @@ namespace ASP_Project.Repositories.GenericRepository
             _table.RemoveRange(entities);
         }
 
-        public TEntity FindById(Guid id)
+   /*     public TEntity FindById(Guid id)
         {
             return _table.Find(id);
         }
-
-        public async Task<TEntity> FindByIdAsync(Guid id)
-        {
-            return await _table.FindAsync();
-        }
+*/
 
         public bool Save()
         {

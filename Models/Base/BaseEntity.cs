@@ -11,6 +11,6 @@ namespace ASP_Project.Models.Base
 
         public DateTime DateCreated { get; set; }
 
-        public DateTime? DateModified { get; set; }
+        public DateTime DateModified { get; set; }
     }
 }
