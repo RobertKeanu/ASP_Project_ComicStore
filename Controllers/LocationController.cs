@@ -33,5 +33,19 @@ namespace ASP_Project.Controllers
 
             return Ok("Created the location");
         }
+        [HttpGet("Get Location")]
+        public ActionResult<string> GetLocation()
+        {
+            var loc = _ILocationService.GetAsync();
+            return Ok(loc);
+        }
+
+        [HttpDelete("Delete location")]
+        public ActionResult<string> DeleteLocation(Location loc)
+        {
+            var location = _ILocationService.Delete(loc);
+            return Ok("deleted the location");
+        }
+
     }
 }
