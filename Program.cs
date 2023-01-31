@@ -16,7 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //Repositories
-builder.Services.AddTransient<ILocations, Locations>();
+builder.Services.AddTransient<ILocations, LocationRepository>();
 
 //Services
 builder.Services.AddTransient<ILocationService, LocationService>();

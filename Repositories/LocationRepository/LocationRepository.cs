@@ -4,9 +4,9 @@ using ASP_Project.Data;
 
 namespace ASP_Project.Repositories.Locations
 {
-    public class Locations : GenericRepository<Location>, ILocations
+    public class LocationRepository : GenericRepository<Location>, ILocations
     {
-        public Locations(DataBaseContext context) : base(context) { }
+        public LocationRepository(DataBaseContext context) : base(context) { }
         public Guid FindLocation(string country, string city, string street)
         {
             var loc = _table.FirstOrDefault(o => o.Country == country && o.City == city && o.Street == street);

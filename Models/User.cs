@@ -21,6 +21,8 @@ namespace ASP_Project.Models
 
         public Roles Role { get; set; } = default!;
 
+        public Comics? Comic { get; set; }
+
         public List<Buy> Buys { get; set; } = new List<Buy>();
     }
 }
