@@ -10,11 +10,10 @@ namespace ASP_Project.Services.UserServices
 
         Task Delete(Guid id);
 
-        Task<User> GetUserById(Guid id);
+        Task<User?> GetUserById(Guid id);
 
         Task<bool> UpdateUser(DTOUser user, Guid id);
 
-        Task<bool> DeleteUser(Guid id);
 
         Task<IEnumerable<User>> GetAllAdmins();
 

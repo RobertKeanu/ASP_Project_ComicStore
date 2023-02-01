@@ -1,6 +1,7 @@
 ﻿using ASP_Project.Models;
 using ASP_Project.Models.DTOModels;
 using ASP_Project.Repositories;
+using Microsoft.IdentityModel.Tokens;
 
 namespace ASP_Project.Services.UserServices
 {
@@ -13,39 +14,49 @@ namespace ASP_Project.Services.UserServices
             _IUnitOfWork = iUnitOfWork;
         }
 
-        Task IUserServices.Create(User newUser)
+        public async Task Create(User newUser)
         {
-            throw new NotImplementedException();
+            await _IUnitOfWork.UserRepository.CreateAsync(newUser);
+            await _IUnitOfWork.SaveAsync();
         }
 
-        Task IUserServices.Delete(Guid id)
+        public async Task Delete(Guid id)
         {
-            throw new NotImplementedException();
+            var userr = await _IUnitOfWork.UserRepository.FindByIdAsync(id);
+            if(userr != null)
+             _IUnitOfWork.UserRepository.Delete(userr);
+            await _IUnitOfWork.SaveAsync();
         }
 
-        Task<bool> IUserServices.DeleteUser(Guid id)
+        public IAsyncEnumerable<User> Get()
         {
-            throw new NotImplementedException();
+            return _IUnitOfWork.UserRepository.GetAsync();
         }
 
-        IAsyncEnumerable<User> IUserServices.Get()
+        public Task<IEnumerable<User>> GetAllAdmins()
         {
-            throw new NotImplementedException();
+            return _IUnitOfWork.UserRepository.GetAdminsWithComicsRented();
         }
 
-        Task<IEnumerable<User>> IUserServices.GetAllAdmins()
+        public async Task<User?> GetUserById(Guid id)
         {
-            throw new NotImplementedException();
+
+            return await _IUnitOfWork.UserRepository.FindByIdAsync(id);
         }
 
-        Task<User> IUserServices.GetUserById(Guid id)
+        async Task<bool> IUserServices.UpdateUser(DTOUser user, Guid id)
         {
-            throw new NotImplementedException();
-        }
+            var myus = await _IUnitOfWork.UserRepository.FindByIdAsync(id);
+            if (myus == null)
+                return false;
+            myus.DateOfBirth = user.DateOfBirth;
+            myus.FirstName = user.FirstName;
+            myus.LastName = user.LastName;
+            myus.PhoneNumber = user.PhoneNumber;
 
-        Task<bool> IUserServices.UpdateUser(DTOUser user, Guid id)
-        {
-            throw new NotImplementedException();
+            await _IUnitOfWork.SaveAsync();
+
+            return true;
         }
     }
 }
