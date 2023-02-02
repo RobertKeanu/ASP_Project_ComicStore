@@ -1,9 +1,10 @@
 using ASP_Project.Data;
 using ASP_Project.Models;
 using ASP_Project.Repositories;
-using ASP_Project.Repositories.Locations;
-using ASP_Project.Services.LocationServices;
+using ASP_Project.Services;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,10 +17,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //Repositories
-builder.Services.AddTransient<ILocations, LocationRepository>();
-
+builder.Services.AddRepo();
+builder.Services.AddServices();
 //Services
-builder.Services.AddTransient<ILocationService, LocationService>();
 
 var app = builder.Build();
 

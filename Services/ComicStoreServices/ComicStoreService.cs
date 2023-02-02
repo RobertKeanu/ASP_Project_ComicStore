@@ -7,27 +7,27 @@ namespace ASP_Project.Services.ComicStoreServices
 {
     public class ComicStoreService : IComicStoreServices
     {
-        public IComicStoreRepo _IComicStore;
+        public IUnitOfWork _IUnitOfWork;
 
-        public ComicStoreService(IComicStoreRepo loc)
+        public ComicStoreService(IUnitOfWork iUnitOfWork)
         {
-            _IComicStore = loc;
+            _IUnitOfWork = iUnitOfWork;
         }
         public async Task Create(ComicStore store)
         {
-            await _IComicStore.CreateAsync(store);
-            await _IComicStore.SaveAsync();
+            await _IUnitOfWork.ComicStore.CreateAsync(store);
+            await _IUnitOfWork.SaveAsync();
         }
 
         public Task Delete(ComicStore store)
         {
-            _IComicStore.Delete(store);
+            _IUnitOfWork.ComicStore.Delete(store);
             return Task.CompletedTask;
         }
 
         public IAsyncEnumerable<ComicStore> Get()
         {
-            return _IComicStore.GetAsync();
+            return _IUnitOfWork.ComicStore.GetAsync();
         }
     }
 }

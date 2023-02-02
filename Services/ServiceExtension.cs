@@ -19,6 +19,7 @@ namespace ASP_Project.Services
             services.AddTransient<IComicStoreRepo, ComicStoreRepo>();
             services.AddTransient<ILocations, LocationRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
             return services;
         }
         public static IServiceCollection AddServices(this IServiceCollection services)

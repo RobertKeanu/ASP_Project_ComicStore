@@ -6,31 +6,33 @@ namespace ASP_Project.Services.LocationServices
 {
     public class LocationService : ILocationService
     {
-        public ILocations _ILocations;
-        public LocationService (ILocations loc)
+        public IUnitOfWork _IUnitOfWork;
+
+        public LocationService(IUnitOfWork iUnitOfWork)
         {
-            _ILocations = loc;
+            _IUnitOfWork = iUnitOfWork;
         }
 
         public async Task Create(Location location)
         {
-            await _ILocations.CreateAsync(location);
-            await _ILocations.SaveAsync();
+            await _IUnitOfWork.LocationRepository.CreateAsync(location);
+            await _IUnitOfWork.SaveAsync();
         }
 
         public Task Delete(Location location)
         {
-            _ILocations.Delete(location);
+            _IUnitOfWork.LocationRepository.Delete(location);
+            _IUnitOfWork.SaveAsync();
             return Task.CompletedTask;
         }
         public IAsyncEnumerable<Location> GetAsync()
         {
-            return _ILocations.GetAsync();
+            return _IUnitOfWork.LocationRepository.GetAsync();
         }
 
         public Guid GetLocation(string country, string city, string street)
         {
-            return _ILocations.FindLocation(country, city, street);
+            return _IUnitOfWork.LocationRepository.FindLocation(country, city, street);
         }
     }
 }

@@ -3,6 +3,7 @@ using ASP_Project.Models.Base.Roles;
 using ASP_Project.Models.DTOModels;
 using ASP_Project.Services.ComicServices;
 using ASP_Project.Services.UserServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
@@ -18,7 +19,7 @@ namespace ASP_Project.Controllers
         {
             _IUserServices = iUserServices;
         }
-        [HttpPost("Create a new user")]
+        [HttpPost("Create a new employee")]
 
         public async Task<ActionResult<DTOUserCreate>> CreateTheUser(DTOUserRequired user)
         {
@@ -26,7 +27,7 @@ namespace ASP_Project.Controllers
             {
                 FirstName = user.Name,
                 Email = user.Email,
-                RoleName = Roles.User,
+                RoleName = Roles.Employee,
 
             };
             await _IUserServices.Create(userr);
@@ -38,5 +39,18 @@ namespace ASP_Project.Controllers
                 RoleName = userr.RoleName,
             });
         }
+        [HttpGet("Get All Users"), Authorize(Roles = "Admin,Employee")]
+        public ActionResult<string> GetUsers()
+        {
+            var users = _IUserServices.Get();
+            return Ok(users);
+        }
+        [HttpDelete ("Delete User by {id}") , Authorize(Roles = "Admin")]
+        public async Task<ActionResult<string>> Delete(Guid id)
+        {
+            await _IUserServices.Delete(id);
+            return Ok("deleted");
+        }
+        //next update
     }
 }

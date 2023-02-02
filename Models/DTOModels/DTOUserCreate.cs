@@ -15,9 +15,9 @@ namespace ASP_Project.Models.DTOModels
 
         public Guid Id { get; set; }
 
-        public string? Name { get; set; }
+        public required string Name { get; set; }
 
-        public string? Email { get; set; }
+        public required string Email { get; set; }
 
         public Roles RoleName { get; set; }
     }
