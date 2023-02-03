@@ -1,5 +1,6 @@
 ﻿using ASP_Project.Models.Base;
 using ASP_Project.Models.Base.Roles;
+using System.Text.Json.Serialization;
 
 namespace ASP_Project.Models
 {
@@ -15,16 +16,17 @@ namespace ASP_Project.Models
 
         public string DateOfBirth { get; set; } = string.Empty;
 
-        public string Preferences { get; set; } = string.Empty;
-
         public List<Rent> Rents { get; set; } = new List<Rent>();
+
+        public string Preferences { get; set; } = default!;
 
         public Roles Role { get; set; } = default!;
 
         public Comics? Comic { get; set; }
 
-        public Roles RoleName { get; set; } = default!;
-
         public List<Buy> Buys { get; set; } = new List<Buy>();
+
+        [JsonIgnore]
+        public string PasswordHash { get; set; } = default!;
     }
 }

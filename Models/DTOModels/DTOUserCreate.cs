@@ -19,6 +19,10 @@ namespace ASP_Project.Models.DTOModels
 
         public required string Email { get; set; }
 
+        public required string PhoneNumber { get; set; }
+
+        public required string Preferences { get; set; }
+
         public Roles RoleName { get; set; }
     }
 }

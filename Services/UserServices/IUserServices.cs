@@ -15,7 +15,9 @@ namespace ASP_Project.Services.UserServices
         Task<bool> UpdateUser(DTOUser user, Guid id);
 
 
-        Task<IEnumerable<User>> GetAllAdmins();
+        /*Task<IEnumerable<User>> GetAllAdmins();*/
+
+        DTOUserResponse? Authentificate (DTOUserRequest model);
 
         IAsyncEnumerable<User> Get();
         //one more for authentification

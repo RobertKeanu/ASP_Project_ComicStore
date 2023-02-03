@@ -5,6 +5,8 @@ using ASP_Project.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
 using Microsoft.OpenApi.Models;
+using ASP_Project.Helper;
+using ASP_Project.Helper.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +21,9 @@ builder.Services.AddSwaggerGen();
 //Repositories
 builder.Services.AddRepo();
 builder.Services.AddServices();
+builder.Services.AddUtils();
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+
 //Services
 
 var app = builder.Build();
@@ -33,6 +38,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<JwtMiddleware>();
 
 app.MapControllers();
 

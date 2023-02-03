@@ -8,6 +8,7 @@ using ASP_Project.Services.ComicServices;
 using ASP_Project.Services.ComicStoreServices;
 using ASP_Project.Services.LocationServices;
 using ASP_Project.Services.UserServices;
+using ASP_Project.Helper.JwtUtils;
 
 namespace ASP_Project.Services
 {
@@ -28,6 +29,12 @@ namespace ASP_Project.Services
             services.AddTransient<IComicStoreServices, ComicStoreService>();
             services.AddTransient<ILocationService, LocationService>();
             services.AddTransient<IUserServices,UsersServices>();
+            return services;
+        }
+        public static IServiceCollection AddUtils(this IServiceCollection services)
+        {
+            services.AddScoped<IJwtUtils, JwtUtils>();
+
             return services;
         }
     }
