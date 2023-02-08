@@ -15,5 +15,7 @@ namespace ASP_Project.Services.ComicServices
         IAsyncEnumerable<Comics> Get();
 
         Guid FindComic(string name, int price);
+
+        public Task<IEnumerable<Comics>> GetAllComicsFromComicStores(Guid storeId);
     }
 }

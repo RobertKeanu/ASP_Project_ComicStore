@@ -38,17 +38,20 @@ namespace ASP_Project.Services.UserServices
             return _IUnitOfWork.UserRepository.GetAsync();
         }
 
-       /* public Task<IEnumerable<User>> GetAllAdmins()
+        public Task<IEnumerable<User>> GetAllAdmins()
         {
             return _IUnitOfWork.UserRepository.GetAdminsWithComicsRented();
-        }*/
+        }
 
         public async Task<User?> GetUserById(Guid id)
         {
 
             return await _IUnitOfWork.UserRepository.FindByIdAsync(id);
         }
-
+        public List<DTOUserRoles> GetAllUsersGroupByRole()
+        {
+            return _IUnitOfWork.UserRepository.GetAllUsersGroupByRole();
+        }
         public DTOUserResponse? Authentificate(DTOUserRequest model)
         {
             var user = _IUnitOfWork.UserRepository.FindByEmail(model.Email);

@@ -49,5 +49,11 @@ namespace ASP_Project.Controllers
                 return Ok("Updated the comic");
             else return BadRequest(111);
         }
+        [HttpGet("Get All Comics")]
+        public Task<IEnumerable<Comics>> GetAllComicsFromComicStores(Guid storeId)
+        {
+            var ps = _IComicsService.GetAllComicsFromComicStores(storeId);
+            return ps;
+        }
     }
 }

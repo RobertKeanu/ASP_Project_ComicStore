@@ -44,6 +44,11 @@ namespace ASP_Project.Services.ComicServices
             return _IUnitOfWork.ComicsRepo.GetAsync();
         }
 
+        public Task<IEnumerable<Comics>> GetAllComicsFromComicStores(Guid storeId)
+        {
+            return _IUnitOfWork.ComicsRepo.GetAllComicsFromComicStores(storeId);
+        }
+
         public async Task<bool> Update(DTOComics comic, Guid id)
         {
             var newComic = await _IUnitOfWork.ComicsRepo.FindByIdAsync(id);

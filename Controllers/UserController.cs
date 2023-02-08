@@ -113,6 +113,19 @@ namespace ASP_Project.Controllers
             else return StatusCode(555);
 
         }
+        [HttpGet("Here are all admins with rented comics")]
+        public Task<IEnumerable<User>> GetAdminsWithComicsRented()
+        {
+            var ddd = _IUserServices.GetAllAdmins();
+            return ddd;
+        }
+
+        [HttpGet("Here are all users by roles")]
+        public List<DTOUserRoles> GetAllUsersGroupByRole()
+        {
+            var ww = _IUserServices.GetAllUsersGroupByRole();
+            return ww;
+        }
         //next update
     }
 }
