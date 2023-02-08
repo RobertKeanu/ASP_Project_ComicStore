@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics.CodeAnalysis;
 using ASP_Project.Repositories;
 using Microsoft.EntityFrameworkCore;
+using ASP_Project.Models.DTOModels;
 
 namespace ASP_Project.Repositories.UserRepository
 {
@@ -33,6 +34,19 @@ namespace ASP_Project.Repositories.UserRepository
         public async Task<IEnumerable<User>> GetAdminsWithComicsRented()
         {
             return await _table.Where(o => o.Role == Roles.Admin).Include(u => u.Comic).ToListAsync();
+        }
+
+        public List<DTOUserRoles> GetAllUsersGroupByRole()
+        {
+            var selectul = from user in _table group user by user.Role;
+            var lista = new List<DTOUserRoles> { };
+
+            //lista.Add((DTOUserRoles)selectul);
+            foreach (var sel in selectul)
+            {
+                lista.Add((DTOUserRoles)sel);
+            }
+            return lista;
         }
     }
 }
