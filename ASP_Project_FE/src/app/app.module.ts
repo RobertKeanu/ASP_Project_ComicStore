@@ -7,11 +7,16 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { MainPageComponent } from './main-page/main-page.component';
+import { ComicsComponent } from './comics/comics.component';
+import { LocationsComponent } from './locations/locations.component';
+import { ComicStoreComponent } from './comic-store/comic-store.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', component: MainPageComponent },
-  { path: 'register' , component: RegisterComponent}
+  { path: 'register', component: RegisterComponent },
+  { path: 'comics', component: ComicsComponent },
+  { path: 'locations', component: LocationsComponent }
 ];
 
 @NgModule({
@@ -19,7 +24,10 @@ const routes: Routes = [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    MainPageComponent
+    MainPageComponent,
+    ComicsComponent,
+    LocationsComponent,
+    ComicStoreComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, RouterModule.forRoot(routes)
