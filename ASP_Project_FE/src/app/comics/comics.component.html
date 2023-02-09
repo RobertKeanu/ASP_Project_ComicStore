@@ -4,3 +4,9 @@
 <p>Tzanca Uraganu - Trotinetele</p><button>Buy</button>
 <p>Alin Pustanu - Vaporul Manelelor</p><button>Buy</button>
 <p>Naruto</p><button>Buy</button>
+<button (click) ="GetAllComicsFromComicStores();">Get<\button>
+<div *ngIf="comicChoice">
+  <li *ngFor =" let comic of comicChoice">
+  {{comics.name}} - {{comics.price}}
+    </li>
+</div>
